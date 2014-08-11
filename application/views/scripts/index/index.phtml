@@ -7,7 +7,7 @@
                                         'default'); ?>">
                 <?php echo $product->name; ?></a>
             <div class="image">
-                <img class="lazy" data-original="<?php echo $this->baseUrl('media'). '/img/'.$product->image; ?>"/>
+                <img class="lazy" data-original="<?php echo $this->baseUrl('media'). '/'.$product->image; ?>"/>
             </div>
             <p>Price: <?php echo $product->price; ?> $</p>
             <div>
@@ -27,5 +27,5 @@
     });
 </script>
 <div class="loading-image">
-    <img src="<?php echo $this->baseUrl('media'). '/img/loading.gif'; ?>"/>
+    <img src="<?php echo $this->baseUrl('media'). '/loading.gif'; ?>"/>
 </div>

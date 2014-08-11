@@ -10,9 +10,10 @@
 
     </tr>
     <?php foreach($this->products as $productid => $product): ?>
+        <?php if($productid == 'total') continue?>
     <tr id="cart_product_<?php echo $productid; ?>">
         <td>
-            <img class="cart-image" src="<?php echo $this->baseUrl('media'). '/img/'.$product['image']; ?>"/>
+            <img class="cart-image" src="<?php echo $this->baseUrl('media'). '/'.$product['image']; ?>"/>
         </td>
         <td>
             <a href="<?php echo $this->url(array('controller' => 'product',

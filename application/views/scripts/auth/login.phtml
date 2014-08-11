@@ -1,0 +1,10 @@
+<?php
+    $this->title = "LOGIN";
+    echo $this->errMessage;
+    echo $this->form->render();
+    $url = $this->url(array('controller' => 'auth', 'action' => 'contact-us'));
+?>
+<div class="clear"></div>
+<div class="contact-us-block">
+   <button onclick="window.location.href='<?php echo $url; ?>'">Contact Us</button>
+</div>

@@ -26,3 +26,20 @@ $( document ).ready(function() {
         });
     })
 });
+function submitForm(formId, step) {
+    if (step != '') {
+        var url =  '/auth/signup?step=' + step;
+    } else {
+        var url =  "/auth/signup";
+    }
+    $.ajax({
+        type: "POST",
+        url: url,
+        data: $('#' + formId).serialize(),
+        dataType: "html",
+        success: function(html){
+            $('html').html(html);
+        }
+    });
+    return false;
+}

@@ -47,3 +47,113 @@ body {
     background-color: #eeeeee;
     height: 30px;
 }
+body,html {
+    margin: 0 5px;
+    font-family: Verdana,sans-serif;
+}
+h1 {
+    font-size: 1.4em;
+    color: #000080;
+    text-align: center;
+}
+a {
+    color: #000080;
+}
+textarea {
+    height: 120px;
+    width: 380px;
+}
+#content {
+    margin: 0 auto;
+    width: 900px;
+}
+/* taqble */
+th {
+    text-align: left;
+}
+td, th {
+    padding-right: 5px;
+}
+
+/* Form */
+
+#login {
+    display: block;
+    margin: 0 auto;
+    width: 255px;
+}
+form dt {
+    width: 100px;
+    display: block;
+    float: left;
+    clear: left;
+}
+form dd {
+    margin-left: 0;
+    float: left;
+}
+form #submitbutton {
+    margin-left: 100px;
+}
+
+#submit-label .optional{
+    display: none;
+}
+#email-label, #password-label, #passconf-label,
+#username-label, #EditForm dt {
+    width: 210px;
+    padding: 4px;
+}
+.errors{
+    width: 310px;
+}
+#register-form-block {
+    margin: 0 auto;
+    width: 578px;
+}
+fieldset {
+    border: medium none;
+}
+.user-profile h1{
+    text-align: left;
+}
+.link-logout {
+    text-align: right;
+    float: right;
+}
+.link-contact-us {
+    float: left;
+}
+.item-profile {
+    padding: 10px;
+}
+.head-menu {
+    margin: 0 auto;
+    width: 900px;
+    height: 25px;
+    background: none repeat scroll 0 0 #cdcdcd;
+}
+.head-menu div {
+    float: left;
+    padding-left: 15px;
+}
+.item-profile > span {
+    display: block;
+    float: left;
+    width: 130px;
+}
+.clear{
+    clear: both;
+}
+#edit-profile {
+    display: block;
+    margin-left: 250px;
+    margin-top: 20px;
+}
+.contact-us-block {
+    margin: 30% auto;
+    width: 120px;
+}
+.button-last-reg-step {
+    margin: 20px;
+}

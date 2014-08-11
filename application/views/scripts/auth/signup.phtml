@@ -1,0 +1,39 @@
+
+<div id="register-form-block">
+	<?php echo $this->errorMessage; ?>
+	<?php if($this->step == 1 or $this->step == 2): ?>
+		<?php echo $this->form; ?>
+	<?php elseif($this->step == 3): ?>
+		<?php $this->title = "Registration Step 3"; ?>
+		<div class="last-step">
+			<?php if(!empty($this->data)): ?>
+			<div class="resgister-last-step">
+				<form method="post" action="<?php echo $this->url(array('controller' => 'auth', 'action' => 'confirm')) ;?>">
+					<div class="item-profile profile-username">
+					<span>Username:</span>
+						<?php echo $this->data['username']; ?>
+					</div>
+					<div class="item-profile profile-email">
+						<span>Email:</span>
+						<?php echo $this->data['email']; ?>
+					</div>
+					<div class="item-profile profile-gender">
+						<span>Gender:</span>
+						<?php echo $this->data['gender']; ?>
+					</div>
+					<div class="item-profile profile-about">
+						<span>About:</span>
+						<span style="width: 400px;"><?php echo $this->data['about']; ?></span>
+					</div>
+					<div class="clear"></div>
+					<div class="button-last-reg-step">
+						<button onclick="javascript:submitForm('RegistrationForm2', 'two')" tabindex="5" type="button" id="back" name="back">back</button>
+						<button type="submit" id="submit" name="submit">Finish</button>
+					</div>
+				</form>
+			</div>	
+			<?php endif; ?>
+		</div>
+	<?php endif;?>
+</div>
+

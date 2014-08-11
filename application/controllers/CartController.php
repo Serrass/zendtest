@@ -1,15 +1,25 @@
 <?php
 class CartController extends Zend_Controller_Action
 {
+    public $user_id;
 
+    public function init()
+    {
+        if (!Zend_Auth::getInstance()->hasIdentity()) {
+            $this->_helper->redirector('login', 'auth');
+        }
+        $userIns = Zend_Auth::getInstance()->getIdentity();
+        $this->user_id = $userIns->user_id;
+    }
     public function viewAction()
     {
         $cartSession = new Zend_Session_Namespace('cart_Session');
         $products = array();
-        if (isset($cartSession->products)) {
-            $products = $cartSession->products;
-            $this->view->total = $cartSession->total;
+        if (isset($cartSession->products[$this->user_id])) {
+            $products = $cartSession->products[$this->user_id];
+            $this->view->total = $cartSession->products[$this->user_id]['total'];
         }
+        unset($products['total']);
         $this->view->products = $products;
     }
     public function addItemAction()
@@ -21,27 +31,27 @@ class CartController extends Zend_Controller_Action
         $total = 0;
         $cartSession = new Zend_Session_Namespace('cart_Session');
         $tableProducts = new Application_Model_DbTable_Products();
-        if (!empty($cartSession->products[$productId])) {
-            $cartSession->products[$productId]['count']++;
-            $price = $cartSession->products[$productId]['price'];
-            $count = $cartSession->products[$productId]['count'];
+        if (!empty($cartSession->products[$this->user_id][$productId])) {
+            $cartSession->products[$this->user_id][$productId]['count']++;
+            $price = $cartSession->products[$this->user_id][$productId]['price'];
+            $count = $cartSession->products[$this->user_id][$productId]['count'];
             $coast = $price * $count;
-            $cartSession->products[$productId]['coast'] = $coast;
+            $cartSession->products[$this->user_id][$productId]['coast'] = $coast;
         } else {
-            $cartSession->products[$productId]=array();
+            $cartSession->products[$this->user_id][$productId]=array();
             $product = $tableProducts->getProduct($productId);
             if(!empty($product)) {
                 unset($product['product_id']);
                 $product['count'] = 1;
                 $product['coast'] = $product['price'];
-                $cartSession->products[$productId] = $product;
+                $cartSession->products[$this->user_id][$productId] = $product;
             }
         }
-        if (!empty($cartSession->products)) {
-            foreach($cartSession->products as $products) {
+        if (!empty($cartSession->products[$this->user_id])) {
+            foreach($cartSession->products[$this->user_id] as $products) {
                 $total +=  $products['coast'];
             }
-            $cartSession->total = $total;
+            $cartSession->products[$this->user_id]['total'] = $total;
         }
         exit;
     }
@@ -52,32 +62,15 @@ class CartController extends Zend_Controller_Action
             return false;
         }
         $cartSession = new Zend_Session_Namespace('cart_Session');
-        if (isset($cartSession->products[$productId])) {
-            unset($cartSession->products[$productId]);
-            $cartSession->total = 0;
-            foreach($cartSession->products as $products) {
-                $cartSession->total +=  $products['coast'];
+        if (isset($cartSession->products[$this->user_id][$productId])) {
+            unset($cartSession->products[$this->user_id][$productId]);
+            $cartSession->products[$this->user_id]['total'] = 0;
+            foreach($cartSession->products[$this->user_id] as $products) {
+                $cartSession->products[$this->user_id]['total'] +=  $products['coast'];
             }
         }
-        echo json_encode(array('total' =>  $cartSession->total));
+        echo json_encode(array('total' =>  $cartSession->products[$this->user_id]['total']));
        exit;
     }
-    public function clearCartAction()
-    {
-//        $str = 'Mystring';
-//        $count = strlen($str);
-//        $newStr = '';
-//        for($i=$count; $i>=0; $i--) {
-//            $newStr .= $str[$i];
-//        }
-//        foreach(range(1,100) as $index) {
-//          echo (''==($x=($index%3==0 ? 'Fizz' : '').($index%5==0 ? 'Bizz' : '')) ? $index : $x) . '<br    />';
-//        }
-            exit;
-//
-//        Zend_Session::namespaceUnset('cart_Session');
-//        exit;
-    }
-
 }
 

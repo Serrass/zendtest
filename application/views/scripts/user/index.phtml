@@ -1,0 +1,26 @@
+<div class="user-profile">
+    <?php if(!empty($this->user)): ?>
+        <h1><?php echo $this->user['first_name'] .' '.$this->user['last_name'];  ?></h1>
+        <form  method="post"  action="<?php echo $this->url(array('controller' => 'user', 'action' => 'edit')); ?>">
+            <div class="item-profile profile-username">
+                <span>Username:</span>
+                <?php echo $this->user['username']; ?>
+            </div>
+            <div class="item-profile profile-email">
+                <span>Email:</span>
+                <?php echo $this->user['email']; ?>
+            </div>
+            <div class="item-profile profile-gender">
+                <span>Gender:</span>
+                <?php echo $this->user['gender']; ?>
+            </div>
+            <div class="item-profile profile-about">
+                <span>About:</span>
+                <span style="width: 400px;"><?php echo $this->user['about']; ?></span>
+            </div>
+            <div class="clear"></div>
+            <button type="submit" id="edit-profile" name="submit">Edit Profile</button>
+        </form>
+    <?php endif; ?>
+    
+</div>

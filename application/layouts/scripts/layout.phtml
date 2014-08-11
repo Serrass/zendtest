@@ -18,17 +18,29 @@
         <b>Mini-Shop on Zend Framework</b>
     </div>
 </div>
-<div class="mini-menu">
-    <a href="/">Home</a>
-    <div id="header-navigation" style="float: right">
-        <a href="<?php echo $this->url(
-            array('controller' => 'cart',
-                'action'     => 'view'),
-            'default',
-            true) ?>">Cart</a>
-    </div>
+<div class="head-menu">
+    <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+        <?php $urlLogout = $this->url(array('controller'=>'auth', 'action' => 'logout')); ?>
+        <?php $urlContact = $this->url(array('controller'=>'auth', 'action' => 'contact-us')); ?>
+        <?php $urlUseredit = $this->url(array('controller'=>'user', 'action' => 'edit')); ?>
+        <?php $urlCart = $this->url(array('controller'=>'cart', 'action' => 'view')) ?>
+        <div class="link-home">
+            <a href="/">Home</a>
+        </div>
+        <div class="link-contact-us">
+            <a href = "<?php echo $urlUseredit; ?>">My Profile</a>
+        </div>
+        <div class="link-contact-us">
+            <a href = "<?php echo $urlContact; ?>">Contact Us</a>
+        </div>
+        <div class="link-cart">
+            <a href="<?php echo $urlCart; ?>">Cart</a>
+        </div>
+        <div class="link-logout">
+            <a href = "<?php echo $urlLogout; ?>">Logout</a>
+        </div>
+    <?php endif; ?>
 </div>
-
 <?php echo $this->layout()->content ?>
 
 </body>
