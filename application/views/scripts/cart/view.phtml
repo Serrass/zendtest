@@ -1,0 +1,78 @@
+<?php if(count($this->products) > 0): ?>
+    <table class="cart-table">
+    <tr>
+        <td>Image</td>
+        <td>Product Name</td>
+        <td>count</td>
+        <td>price</td>
+        <td>coast</td>
+        <td>action</td>
+
+    </tr>
+    <?php foreach($this->products as $productid => $product): ?>
+    <tr id="cart_product_<?php echo $productid; ?>">
+        <td>
+            <img class="cart-image" src="<?php echo $this->baseUrl('media'). '/img/'.$product['image']; ?>"/>
+        </td>
+        <td>
+            <a href="<?php echo $this->url(array('controller' => 'product',
+                    'action'     => 'view',
+                    'id'         => $productid),
+                'default'); ?>">
+                <?php echo $product['name']; ?>
+            </a>
+        </td>
+        <td><?php echo $product['count'] ?></td>
+        <td><?php echo $product['price'] ?></td>
+        <td><?php echo $product['coast'] ?></td>
+        <td><a class="delete-link" id="delete_<?php echo $productid; ?>"href="javascript:void(0);">delete</a></td>
+    </tr>
+
+    <?php endforeach; ?>
+    </table>
+    <div class="total-cart">
+        <p>Total: <span id="total_value"><?php echo $this->total; ?></span> $</p>
+    </div>
+
+<?php else: ?>
+    <div class="tip">
+        <p>There are no product!</p>
+    </div>
+<?php endif; ?>
+<script type="application/javascript">
+$(document).ready(function(){
+    $('.delete-link').click(function(){
+        var url = '/cart/delete-item/';
+        var id = this.id.split('_');
+        var data = {product_id: id[1]};
+        // fire off the request to /form.php
+        request = $.ajax({
+            url: url,
+            type: "post",
+            data: data,
+            dataType: "json"
+        });
+        // callback handler that will be called on success
+        request.done(function (res){
+            $('#cart_product_'+id[1]).remove();
+            $('#total_value').text(res.total);
+            // log a message to the console
+
+
+        });
+        // callback handler that will be called on failure
+        request.fail(function (jqXHR, textStatus, errorThrown){
+            // log the error to the console
+            console.error(
+                "The following error occured: "+
+                    textStatus, errorThrown
+            );
+        });
+
+
+
+    })
+
+
+})
+</script>

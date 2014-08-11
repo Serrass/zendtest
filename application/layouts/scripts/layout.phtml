@@ -1,0 +1,35 @@
+<!-- application/layouts/scripts/layout.phtml -->
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Mini-Shop on Zend Framework</title>
+
+    <?php echo $this->headLink()->prependStylesheet($this->baseUrl().'/css/styles.css'); ?>
+
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery-1.11.0.min.js') ?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/js/jquery.lazyload.min.js') ?>
+    <?php echo $this->headScript()->appendFile($this->baseUrl().'/js/script.js') ?>
+
+</head>
+<body>
+<div id="header" style="background-color: #EEEEEE; height: 30px;">
+    <div id="header-logo" style="float: left">
+        <b>Mini-Shop on Zend Framework</b>
+    </div>
+</div>
+<div class="mini-menu">
+    <a href="/">Home</a>
+    <div id="header-navigation" style="float: right">
+        <a href="<?php echo $this->url(
+            array('controller' => 'cart',
+                'action'     => 'view'),
+            'default',
+            true) ?>">Cart</a>
+    </div>
+</div>
+
+<?php echo $this->layout()->content ?>
+
+</body>
+</html>

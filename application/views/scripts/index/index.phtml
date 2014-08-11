@@ -1,0 +1,31 @@
+<?php if(count($this->products) > 0): ?>
+    <?php foreach($this->products as $product): ?>
+        <div class="product-item">
+            <a href="<?php echo $this->url(array('controller' => 'product',
+                                                 'action'     => 'view',
+                                                 'id'         => $product->product_id),
+                                        'default'); ?>">
+                <?php echo $product->name; ?></a>
+            <div class="image">
+                <img class="lazy" data-original="<?php echo $this->baseUrl('media'). '/img/'.$product->image; ?>"/>
+            </div>
+            <p>Price: <?php echo $product->price; ?> $</p>
+            <div>
+                <button class="add-to-cart" id="product_<?php echo $product['product_id'] ?>">Add To Cart</button>
+            </div>
+        </div>
+
+    <?php endforeach; ?>
+<?php else: ?>
+    <div class="tip">
+        <p>There are no product!</p>
+    </div>
+<?php endif; ?>
+<script type="text/javascript">
+    $("img.lazy").lazyload({
+        effect : "fadeIn"
+    });
+</script>
+<div class="loading-image">
+    <img src="<?php echo $this->baseUrl('media'). '/img/loading.gif'; ?>"/>
+</div>

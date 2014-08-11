@@ -1,0 +1,16 @@
+<a href="javascript:void(0);" onclick="window.history.back()">back</a>
+<?php if($this->product): ?>
+    <div class="product-details">
+        <div class="name"><?php echo $this->product['name']; ?></div>
+        <div class="image">
+            <img src="<?php echo $this->baseUrl('media'). '/img/' . $this->product['image']; ?>"/>
+        </div>
+        <div class="price"> <p>Price: <?php echo $this->product['price']; ?> $</p></div>
+        <div>
+            <button class="add-to-cart" id="product_<?php echo $this->product['product_id'] ?>"> Add To Cart</button>
+        </div>
+    </div>
+<?php endif; ?>
+<div class="loading-image">
+    <img src="<?php echo $this->baseUrl('media'). '/img/loading.gif'; ?>"/>
+</div>
