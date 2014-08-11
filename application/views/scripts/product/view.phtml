@@ -3,7 +3,7 @@
     <div class="product-details">
         <div class="name"><?php echo $this->product['name']; ?></div>
         <div class="image">
-            <img src="<?php echo $this->baseUrl('media'). '/img/' . $this->product['image']; ?>"/>
+            <img src="<?php echo $this->baseUrl('media'). '/' . $this->product['image']; ?>"/>
         </div>
         <div class="price"> <p>Price: <?php echo $this->product['price']; ?> $</p></div>
         <div>
@@ -12,5 +12,5 @@
     </div>
 <?php endif; ?>
 <div class="loading-image">
-    <img src="<?php echo $this->baseUrl('media'). '/img/loading.gif'; ?>"/>
+    <img src="<?php echo $this->baseUrl('media'). '/loading.gif'; ?>"/>
 </div>

@@ -13,12 +13,8 @@
 
 </head>
 <body>
-<div id="header" style="background-color: #EEEEEE; height: 30px;">
-    <div id="header-logo" style="float: left">
-        <b>Mini-Shop on Zend Framework</b>
-    </div>
-</div>
 <div class="head-menu">
+    <div ><b>Mini-Shop on Zend Framework</b></div>
     <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
         <?php $urlLogout = $this->url(array('controller'=>'auth', 'action' => 'logout')); ?>
         <?php $urlContact = $this->url(array('controller'=>'auth', 'action' => 'contact-us')); ?>
