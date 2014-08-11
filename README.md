@@ -1,12 +1,7 @@
 zendtest
 ========
-For Code example
-<ul>
-<li>Change database settings in /application/configs/application.ini</li>
-<li>Restore database from sql.sql file</li>
-<ul>
 
-Additional functionality:
+<h2>Aditional functionality:</h2>
 <ul>
     <li>Authentication functionality (User login and logout)</li>
     <li>View and edit user profile</li>
@@ -17,3 +12,9 @@ Additional functionality:
     <li>Product detail</li>
     <li>Cart function (show cart, add item, delete item)</li>
 </ul>
+
+
+<ul>
+<li>Change database settings in /application/configs/application.ini</li>
+<li>Restore database from sql.sql file</li>
+<ul>
