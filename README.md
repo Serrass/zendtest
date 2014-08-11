@@ -6,7 +6,7 @@ zendtest
     <li>Authentication functionality (User login and logout)</li>
     <li>View and edit user profile</li>
     <li>User registration (Submitting of two first steps of registration form made via AJAX)</li>
-    <li>After user registration confirmation will send email. Email text simple “Thank you for registration“</li>
+    <li>After user registration will be send a confirmation email. Email text simple “Thank you for registration“</li>
     <li>Contact us page</li>
     <li>Overview of products</li>
     <li>Product detail</li>
