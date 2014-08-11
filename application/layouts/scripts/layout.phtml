@@ -22,7 +22,7 @@
     <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
         <?php $urlLogout = $this->url(array('controller'=>'auth', 'action' => 'logout')); ?>
         <?php $urlContact = $this->url(array('controller'=>'auth', 'action' => 'contact-us')); ?>
-        <?php $urlUseredit = $this->url(array('controller'=>'user', 'action' => 'edit')); ?>
+        <?php $urlUseredit = $this->url(array('controller'=>'user', 'action' => 'index')); ?>
         <?php $urlCart = $this->url(array('controller'=>'cart', 'action' => 'view')) ?>
         <div class="link-home">
             <a href="/">Home</a>
