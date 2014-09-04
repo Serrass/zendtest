@@ -1,11 +1,21 @@
 <?php
+
+/**
+ * Class AuthController
+ */
 class AuthController extends Zend_Controller_Action
 {
+    /**
+     *redirect to login page
+     */
     public function indexAction()
     {
         $this->_helper->redirector('login');
     }
 
+    /**
+     * user login
+     */
     public function loginAction()
     {
         if (Zend_Auth::getInstance()->hasIdentity()) {
@@ -45,6 +55,10 @@ class AuthController extends Zend_Controller_Action
             }
         }
     }
+
+    /**
+     * logout
+     */
     public function logoutAction()
     {
         //clear data
@@ -57,10 +71,12 @@ class AuthController extends Zend_Controller_Action
         $this->_helper->redirector('index', 'index');
     }
 
+    /**
+     * user registration
+     */
     public function signupAction()
     {
         $session = new Zend_Session_Namespace('SignUpData');
-        //$session->unsetAll();
         $formData = $this->getRequest()->getPost();
         $stepBack = $this->_getParam('step', '');
         $session->step = !empty($session->step) ? $session->step : 1;
@@ -123,9 +139,12 @@ class AuthController extends Zend_Controller_Action
             if (!empty($session->regData)) {
                 $this->view->data = $session->regData;
             }
-            //$this->view->step = !empty($session->step) ? $session->step : 1;
         }
     }
+
+    /**
+     * thank you email after registration
+     */
     public function confirmAction()
     {
         if (Zend_Auth::getInstance()->hasIdentity()) {
@@ -168,6 +187,10 @@ class AuthController extends Zend_Controller_Action
 
         }
     }
+
+    /**
+     * Contact us
+     */
     public function contactUsAction()
     {
 
@@ -202,13 +225,7 @@ class AuthController extends Zend_Controller_Action
                 $mail->setSubject($formData['subject']);
                 $mail->send();
                 $this->view->message = 'Your message sent!';
-
-
             }
-
         }
-
-
-
     }
 }

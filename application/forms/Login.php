@@ -1,7 +1,13 @@
 <?php
 
+/**
+ * Class Application_Form_Login
+ */
 class Application_Form_Login extends Zend_Form
 {
+    /**
+     * form init
+     */
     public function init()
     {
         $this->setName('login');
@@ -56,11 +62,12 @@ class Application_Form_Login extends Zend_Form
                 array('Label', array('tag' => 'dt')),
                 'Errors',
             ));
-        
-        
-        //$submit = new Zend_Form_Element_Submit('login');
-        //$submit->setLabel('login');
     }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
     public function isValid($data)
     {
         $isValid = parent::isValid($data);

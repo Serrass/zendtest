@@ -1,10 +1,20 @@
 <?php
 
+/**
+ * Class Application_Model_DbTable_Users
+ */
 class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 {
 
+    /**
+     * @var string
+     */
     protected $_name = 'users';
 
+    /**
+     * @param $params
+     * @return bool
+     */
     public function getUserByParams($params)
     {
         if (!empty($params['username'])) {
@@ -24,6 +34,13 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
 			return 	false;
 		}
     }
+
+    /**
+     *  create user
+     *
+     * @param $params
+     * @return bool
+     */
     public function addUser($params)
     {
         if (!empty($params['password'])) {
@@ -38,6 +55,12 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         
        
     }
+
+    /**
+     * update user
+     *
+     * @param $params
+     */
     public function updateProfile($params)
     {
         $userId = $params['user_id'];
@@ -45,6 +68,13 @@ class Application_Model_DbTable_Users extends Zend_Db_Table_Abstract
         $this->update($params, 'user_id = '. (int)$userId);
         
     }
+
+    /**
+     *  gettin User bu user_id
+     *
+     * @param $id
+     * @return array|bool
+     */
     public function getUser($id)
     {
         $select = $this->select()

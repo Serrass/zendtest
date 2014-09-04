@@ -1,15 +1,24 @@
 <?php
 
+/**
+ * Class UserController
+ */
 class UserController extends Zend_Controller_Action
 {
-	
+
+    /**
+     * redirect to login page if not logged
+     */
     public function init()
     {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
             $this->_helper->redirector('login', 'auth');
 	    }
     }
-   
+
+    /**
+     * User profile
+     */
     public function indexAction()
     {
 		$userIns = Zend_Auth::getInstance()->getIdentity();
@@ -17,6 +26,10 @@ class UserController extends Zend_Controller_Action
 		$user = $tableUsers->getUser($userIns->user_id);
 		$this->view->user = $user;
     }
+
+    /**
+     * User edit
+     */
     public function editAction()
     {
 		$this->view->form = $form = new Application_Form_Edit();
@@ -46,7 +59,6 @@ class UserController extends Zend_Controller_Action
 				$tableUsers->updateProfile($values);
 			    }
 			}
-			
 		}
     }
 }

@@ -1,8 +1,14 @@
 <?php
 
+/**
+ * Class Application_Form_SignupSecond
+ */
 class Application_Form_SignupSecond extends Zend_Form
 {
 
+    /**
+     * @param null $options
+     */
     function __construct($options = null)
     {
     	parent::__construct($options);
@@ -85,8 +91,5 @@ class Application_Form_SignupSecond extends Zend_Form
 			'back',
 			'submit'
 		), 'buttons');
-        /* Form Elements & Other Definitions Here ... */
     }
-
-
 }

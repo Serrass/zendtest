@@ -1,8 +1,14 @@
 <?php
 
+/**
+ * Class Application_Form_ContactUs
+ */
 class Application_Form_ContactUs extends Zend_Form
 {
 
+    /**
+     * @param null $options
+     */
     function __construct($options = null)
     {
         parent::__construct($options);

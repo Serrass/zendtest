@@ -1,8 +1,14 @@
 <?php
 
+/**
+ * Class Application_Form_Edit
+ */
 class Application_Form_Edit extends Zend_Form
 {
 
+    /**
+     * @param null $options
+     */
     function __construct($options = null)
     {
     	parent::__construct($options);
@@ -119,6 +125,11 @@ class Application_Form_Edit extends Zend_Form
 		), 'buttons');
         /* Form Elements & Other Definitions Here ... */
     }
+
+    /**
+     * @param array $data
+     * @return bool
+     */
     public function isValid($data)
     {
         $isValid = parent::isValid($data);

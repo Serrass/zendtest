@@ -1,8 +1,14 @@
 <?php
 
+/**
+ * Class Application_Form_Signup
+ */
 class Application_Form_Signup extends Zend_Form
 {
 
+    /**
+     * @param null $options
+     */
     function __construct($options = null)
     {
     	parent::__construct($options);
@@ -92,7 +98,12 @@ class Application_Form_Signup extends Zend_Form
 		), 'buttons');
 	}
 
-	public function isValid($data)
+    /**
+     * custom form validator
+     * @param array $data
+     * @return bool
+     */
+    public function isValid($data)
 	{
 		$isValid = parent::isValid($data);
 		

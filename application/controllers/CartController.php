@@ -1,8 +1,18 @@
 <?php
+
+/**
+ * Class CartController
+ */
 class CartController extends Zend_Controller_Action
 {
+    /**
+     * @var
+     */
     public $user_id;
 
+    /**
+     *  redirect to login page if not logged
+     */
     public function init()
     {
         if (!Zend_Auth::getInstance()->hasIdentity()) {
@@ -11,6 +21,10 @@ class CartController extends Zend_Controller_Action
         $userIns = Zend_Auth::getInstance()->getIdentity();
         $this->user_id = $userIns->user_id;
     }
+
+    /**
+     * view cart
+     */
     public function viewAction()
     {
         $cartSession = new Zend_Session_Namespace('cart_Session');
@@ -22,6 +36,12 @@ class CartController extends Zend_Controller_Action
         unset($products['total']);
         $this->view->products = $products;
     }
+
+    /**
+     * Add item to cart
+     *
+     * @return bool
+     */
     public function addItemAction()
     {
         $productId = $this->getRequest()->getParam('product_id', false);
@@ -55,6 +75,12 @@ class CartController extends Zend_Controller_Action
         }
         exit;
     }
+
+    /**
+     * delete item from cart
+     *
+     * @return bool
+     */
     public function deleteItemAction()
     {
         $productId = $this->getRequest()->getParam('product_id', false);
